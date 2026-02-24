@@ -1,6 +1,9 @@
 package lt.viko.eif.dsimanavicius.task1;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
 
 public class Client {
@@ -10,25 +13,30 @@ public class Client {
 
     public static void main(String[] args) {
 
+        System.out.println("Connecting to server...");
+
         try (
                 Socket socket = new Socket(SERVER_ADDRESS, PORT);
                 InputStream inputStream = socket.getInputStream();
                 FileOutputStream fileOutputStream = new FileOutputStream("received_siunta.xml");
-                BufferedOutputStream bufferedOutput = new BufferedOutputStream(fileOutputStream)
+                BufferedOutputStream bufferedOutputStream =
+                        new BufferedOutputStream(fileOutputStream)
         ) {
 
             byte[] buffer = new byte[4096];
             int bytesRead;
 
             while ((bytesRead = inputStream.read(buffer)) != -1) {
-                bufferedOutput.write(buffer, 0, bytesRead);
+                bufferedOutputStream.write(buffer, 0, bytesRead);
             }
 
-            bufferedOutput.flush();
-            System.out.println("File received successfully.");
+            bufferedOutputStream.flush();
+
+            System.out.println("XML file received successfully.");
+            System.out.println("Saved as: received_siunta.xml");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error receiving file: " + e.getMessage());
         }
     }
 }
