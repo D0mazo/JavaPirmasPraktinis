@@ -10,10 +10,7 @@ public class Server {
 
     public static void main(String[] args) {
 
-        // Change path if needed
         String filePath = "src/lt/viko/eif/dsimanavicius/task1/siunta.xml";
-
-        System.out.println("Starting server...");
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
 
