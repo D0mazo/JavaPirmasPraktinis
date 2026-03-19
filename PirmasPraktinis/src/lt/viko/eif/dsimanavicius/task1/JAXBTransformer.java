@@ -4,9 +4,13 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import javax.xml.XMLConstants;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.sax.SAXSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
 
 /**
  * Performs JAXB transformation from POJO to XML and back from XML to POJO.
@@ -50,14 +54,24 @@ public class JAXBTransformer {
 
         JAXBContext context = JAXBContext.newInstance(Siunta.class);
 
+        // Allow DTD access
+        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+        saxParserFactory.setFeature(
+                "http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        saxParserFactory.setNamespaceAware(true);
+
+        // Validate against XSD
         SchemaFactory schemaFactory =
                 SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(new File(XSD_PATH));
+        saxParserFactory.setSchema(schema);
+
+        XMLReader xmlReader = saxParserFactory.newSAXParser().getXMLReader();
+        SAXSource source = new SAXSource(xmlReader,
+                new InputSource(new File(filePath).toURI().toString()));
 
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        unmarshaller.setSchema(schema);
-
-        Siunta siunta = (Siunta) unmarshaller.unmarshal(new File(filePath));
+        Siunta siunta = (Siunta) unmarshaller.unmarshal(source);
 
         System.out.println("XML transformed to POJO successfully.");
         System.out.println(siunta);

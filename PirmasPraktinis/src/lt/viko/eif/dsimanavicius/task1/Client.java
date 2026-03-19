@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 
 /**
- * Simple client that receives siunta.xml from the server over network.
+ * Simple client that receives siunta.xml from server and transforms it to POJO.
  *
  * @author Dominykas
  */
@@ -17,15 +17,17 @@ public class Client {
     private static final int PORT = 5000;
 
     /** Path where received file will be saved. */
-    private static final String SAVE_PATH = "src/lt/viko/eif/dsimanavicius/task1/received_siunta.xml";
+    private static final String SAVE_PATH =
+            "src/lt/viko/eif/dsimanavicius/task1/received_siunta.xml";
 
     /**
-     * Connects to server and receives the XML file.
+     * Connects to server, receives XML file and transforms it to POJO.
      *
      * @param args command line arguments (not used)
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
+        // Step 1 - connect and receive XML file from server
         Socket socket = new Socket(HOST, PORT);
         System.out.println("Connected to server!");
 
@@ -41,7 +43,28 @@ public class Client {
 
         fileOut.close();
         socket.close();
+        System.out.println("XML file received and saved.");
 
-        System.out.println("File received and saved to: " + SAVE_PATH);
+        // Step 2 - transform received XML to POJO and print to console
+        System.out.println("\n=== Transforming XML to POJO ===");
+        JAXBTransformer transformer = new JAXBTransformer();
+        Siunta siunta = transformer.transformToPOJO(SAVE_PATH);
+
+        // Step 3 - print all values to console
+        System.out.println("\n=== Shipment Details ===");
+        System.out.println("Shipment ID  : " + siunta.getShipmentId());
+        System.out.println("Sender       : " + siunta.getSender());
+        System.out.println("Origin       : " + siunta.getOrigin());
+        System.out.println("Destination  : " + siunta.getDestination());
+        System.out.println("Total weight : " + siunta.getTotalWeight());
+        System.out.println("Delivered    : " + siunta.isDelivered());
+        System.out.println("Priority     : " + siunta.getPriority());
+
+        System.out.println("\n=== Package Items ===");
+        for (SiuntaItem item : siunta.getPackageItems()) {
+            System.out.println("  ID: "          + item.getId()
+                    + " | Description: " + item.getDescription()
+                    + " | Weight: "      + item.getWeight() + " kg");
+        }
     }
 }
