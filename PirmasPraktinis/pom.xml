@@ -16,7 +16,8 @@
     </properties>
 
     <build>
-        <testSourceDirectory>src/test</testSourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>src/java</testSourceDirectory>
     </build>
 
     <dependencies>
@@ -37,7 +38,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.0</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

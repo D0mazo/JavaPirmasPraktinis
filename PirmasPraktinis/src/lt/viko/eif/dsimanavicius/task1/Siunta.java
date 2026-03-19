@@ -37,7 +37,7 @@ public class Siunta {
     private boolean delivered;
 
     /** Priority level of the shipment. */
-    private char priority;
+    private String priority;
 
     /** List of packages belonging to this shipment. */
     @XmlElementWrapper(name = "packages")
@@ -64,7 +64,7 @@ public class Siunta {
      */
     public Siunta(int shipmentId, String sender, String origin,
                   String destination, float totalWeight,
-                  boolean delivered, char priority,
+                  boolean delivered, String priority,
                   List<lt.viko.eif.dsimanavicius.task1.SiuntaItem> packageItems) {
         this.shipmentId   = shipmentId;
         this.sender       = sender;
@@ -189,7 +189,7 @@ public class Siunta {
      *
      * @return priority character
      */
-    public char getPriority() {
+    public String getPriority() {
         return priority;
     }
 
@@ -198,7 +198,7 @@ public class Siunta {
      *
      * @param priority priority character
      */
-    public void setPriority(char priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
