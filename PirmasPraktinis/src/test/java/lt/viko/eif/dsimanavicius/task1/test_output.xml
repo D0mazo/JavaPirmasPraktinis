@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<siunta>
+    <shipmentId>1001</shipmentId>
+    <sender>BLS</sender>
+    <origin>Kaunas</origin>
+    <destination>Vilnius</destination>
+    <totalWeight>10.5</totalWeight>
+    <delivered>false</delivered>
+    <priority>N</priority>
+    <packages>
+        <packageItem>
+            <id>1</id>
+            <description>Elektronika</description>
+            <weight>10.5</weight>
+        </packageItem>
+    </packages>
+</siunta>
