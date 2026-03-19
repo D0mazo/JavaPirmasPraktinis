@@ -1,0 +1,17 @@
+<!-- Root element: one shipment containing all required child elements in order -->
+<!ELEMENT siunta (shipmentId, sender, origin, destination, totalWeight, delivered, priority, packages)>
+<!-- Shipment fields -->
+<!ELEMENT shipmentId  (#PCDATA)>
+<!ELEMENT sender      (#PCDATA)>
+<!ELEMENT origin      (#PCDATA)>
+<!ELEMENT destination (#PCDATA)>
+<!ELEMENT totalWeight (#PCDATA)>
+<!ELEMENT delivered   (#PCDATA)>
+<!ELEMENT priority    (#PCDATA)>
+<!-- packages must contain at least one packageItem (+ means one or more) -->
+<!ELEMENT packages    (packageItem+)>
+<!-- Each packageItem contains exactly these three child elements in order -->
+<!ELEMENT packageItem (id, description, weight)>
+<!ELEMENT id          (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT weight      (#PCDATA)>
