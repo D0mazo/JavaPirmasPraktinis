@@ -17,12 +17,6 @@ public class Server {
     private static final String XML_FILE_PATH = "src/lt/viko/eif/dsimanavicius/task1/siunta.xml";
 
     /**
-     * Default constructor.
-     */
-    public Server() {
-    }
-
-    /**
      * Starts the server and sends the XML file to one client.
      *
      * @param args command line arguments (not used)

@@ -19,7 +19,7 @@ class JAXBTransformerTest {
 
     /** Path to test output file. */
     private static final String OUTPUT_PATH =
-            "src/lt/viko/eif/dsimanavicius/task1/test_output.xml";
+            "src/test/java/lt/viko/eif/dsimanavicius/task1/test_output.xml";
 
     /**
      * Tests that XML file is correctly transformed to POJO.

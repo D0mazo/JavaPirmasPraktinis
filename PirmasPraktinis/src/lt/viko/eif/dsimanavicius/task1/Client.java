@@ -20,7 +20,7 @@ public class Client {
 
     /** Path where received file will be saved. */
     private static final String SAVE_PATH =
-            "src/lt/viko/eif/dsimanavicius/task1/received_siunta.xml";
+            "src/lt/viko/eif/dsimanavicius/task1/Out/received_siunta.xml";
 
     /**
      * Default constructor.
@@ -37,7 +37,7 @@ public class Client {
      */
     public static void main(String[] args) throws Exception {
 
-        // Step 1 - receive XML file from server
+        // receive XML file from server
         Socket socket = new Socket(HOST, PORT);
         System.out.println("Connected to server!");
 
@@ -57,8 +57,8 @@ public class Client {
 
         JAXBTransformer transformer = new JAXBTransformer();
 
-        // Step 2 - transform received XML to POJO and print values to console
-        System.out.println("=== Step 5: XML to POJO ===");
+        // transform received XML to POJO and print values to console
+        System.out.println("XML to Plain Old Java Object");
         Siunta siunta = transformer.transformToPOJO(SAVE_PATH);
 
         System.out.println("\nShipment ID  : " + siunta.getShipmentId());
@@ -75,9 +75,9 @@ public class Client {
                     + " | " + item.getWeight() + " kg");
         }
 
-        // Step 3 - transform POJO back to XML and print to console
-        System.out.println("\n=== Step 6: POJO to XML ===\n");
+        // transform POJO back to XML and print to console
+        System.out.println("\nfrom Plain Old Java Object to XML\n");
         transformer.transformToXML(siunta,
-                "src/lt/viko/eif/dsimanavicius/task1/isvestis.xml");
+                "src/lt/viko/eif/dsimanavicius/task1/Out/isvestis.xml");
     }
 }

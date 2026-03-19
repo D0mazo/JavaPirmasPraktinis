@@ -24,12 +24,6 @@ public class JAXBTransformer {
             "src/lt/viko/eif/dsimanavicius/task1/siunta.xsd";
 
     /**
-     * Default constructor.
-     */
-    public JAXBTransformer() {
-    }
-
-    /**
      * Transforms a Siunta POJO object to XML file and prints it to console.
      *
      * @param siunta   the Siunta object to transform
