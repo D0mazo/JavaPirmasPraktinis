@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE siunta SYSTEM "siunta.dtd">
 
+<!DOCTYPE siunta SYSTEM "siunta.dtd">
 <siunta>
     <!-- General shipment information -->
     <shipmentId>1001</shipmentId>

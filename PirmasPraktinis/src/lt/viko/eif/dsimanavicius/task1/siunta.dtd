@@ -1,3 +1,4 @@
+
 <!-- Root element: one shipment containing all required child elements in order -->
 <!ELEMENT siunta (shipmentId, sender, origin, destination, totalWeight, delivered, priority, packages)>
 <!-- Shipment fields -->
