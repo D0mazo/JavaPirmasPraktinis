@@ -1,0 +1,16 @@
+<!ELEMENT shipment (shipmentId, sender, origin, destination, totalWeight, delivered, priority, packages)>
+
+        <!ELEMENT shipmentId (#PCDATA)>
+        <!ELEMENT sender (#PCDATA)>
+        <!ELEMENT origin (#PCDATA)>
+        <!ELEMENT destination (#PCDATA)>
+        <!ELEMENT totalWeight (#PCDATA)>
+        <!ELEMENT delivered (#PCDATA)>
+        <!ELEMENT priority (#PCDATA)>
+
+        <!ELEMENT packages (packageItem+)>
+
+        <!ELEMENT packageItem (id, description, weight)>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT weight (#PCDATA)>
