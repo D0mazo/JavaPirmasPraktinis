@@ -11,7 +11,6 @@ import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
-import lt.viko.eif.dsimanavicius.task1.Siunta;
 
 /**
  * Performs JAXB transformation from POJO to XML and back from XML to POJO.
@@ -25,15 +24,21 @@ public class JAXBTransformer {
             "src/lt/viko/eif/dsimanavicius/task1/siunta.xsd";
 
     /**
+     * Default constructor.
+     */
+    public JAXBTransformer() {
+    }
+
+    /**
      * Transforms a Siunta POJO object to XML file and prints it to console.
      *
      * @param siunta   the Siunta object to transform
      * @param filePath path where XML file will be saved
      * @throws Exception if transformation fails
      */
-    public void transformToXML(lt.viko.eif.dsimanavicius.task1.Siunta siunta, String filePath) throws Exception {
+    public void transformToXML(Siunta siunta, String filePath) throws Exception {
 
-        JAXBContext context = JAXBContext.newInstance(lt.viko.eif.dsimanavicius.task1.Siunta.class);
+        JAXBContext context = JAXBContext.newInstance(Siunta.class);
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
@@ -51,9 +56,9 @@ public class JAXBTransformer {
      * @return Siunta object
      * @throws Exception if transformation or validation fails
      */
-    public lt.viko.eif.dsimanavicius.task1.Siunta transformToPOJO(String filePath) throws Exception {
+    public Siunta transformToPOJO(String filePath) throws Exception {
 
-        JAXBContext context = JAXBContext.newInstance(lt.viko.eif.dsimanavicius.task1.Siunta.class);
+        JAXBContext context = JAXBContext.newInstance(Siunta.class);
 
         // Allow DTD access
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
@@ -72,7 +77,7 @@ public class JAXBTransformer {
                 new InputSource(new File(filePath).toURI().toString()));
 
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        lt.viko.eif.dsimanavicius.task1.Siunta siunta = (Siunta) unmarshaller.unmarshal(source);
+        Siunta siunta = (Siunta) unmarshaller.unmarshal(source);
 
         System.out.println("XML transformed to POJO successfully.");
         System.out.println(siunta);

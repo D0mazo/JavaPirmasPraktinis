@@ -1,9 +1,5 @@
 package lt.viko.eif.dsimanavicius.task1;
 
-import lt.viko.eif.dsimanavicius.task1.JAXBTransformer;
-import lt.viko.eif.dsimanavicius.task1.Siunta;
-import lt.viko.eif.dsimanavicius.task1.SiuntaItem;
-
 import java.io.*;
 import java.net.*;
 
@@ -27,10 +23,17 @@ public class Client {
             "src/lt/viko/eif/dsimanavicius/task1/received_siunta.xml";
 
     /**
+     * Default constructor.
+     */
+    public Client() {
+    }
+
+    /**
      * Connects to server, receives XML, transforms to POJO,
      * then transforms POJO back to XML and prints both to console.
      *
      * @param args command line arguments (not used)
+     * @throws Exception if connection or transformation fails
      */
     public static void main(String[] args) throws Exception {
 
@@ -52,7 +55,7 @@ public class Client {
         socket.close();
         System.out.println("XML file received and saved.\n");
 
-        lt.viko.eif.dsimanavicius.task1.JAXBTransformer transformer = new JAXBTransformer();
+        JAXBTransformer transformer = new JAXBTransformer();
 
         // Step 2 - transform received XML to POJO and print values to console
         System.out.println("=== Step 5: XML to POJO ===");
