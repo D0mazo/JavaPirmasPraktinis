@@ -1,9 +1,11 @@
 package lt.viko.eif.dsimanavicius.task1;
 
+import lt.viko.eif.dsimanavicius.task1.JAXBTransformer;
+import lt.viko.eif.dsimanavicius.task1.Siunta;
+import lt.viko.eif.dsimanavicius.task1.SiuntaItem;
+
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Simple client that receives siunta.xml from server,
@@ -50,7 +52,7 @@ public class Client {
         socket.close();
         System.out.println("XML file received and saved.\n");
 
-        JAXBTransformer transformer = new JAXBTransformer();
+        lt.viko.eif.dsimanavicius.task1.JAXBTransformer transformer = new JAXBTransformer();
 
         // Step 2 - transform received XML to POJO and print values to console
         System.out.println("=== Step 5: XML to POJO ===");
@@ -73,6 +75,6 @@ public class Client {
         // Step 3 - transform POJO back to XML and print to console
         System.out.println("\n=== Step 6: POJO to XML ===\n");
         transformer.transformToXML(siunta,
-                "src/lt/viko/eif/dsimanavicius/task1/test_output.xml");
+                "src/lt/viko/eif/dsimanavicius/task1/isvestis.xml");
     }
 }

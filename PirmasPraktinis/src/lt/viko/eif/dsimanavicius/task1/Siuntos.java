@@ -3,6 +3,8 @@ package lt.viko.eif.dsimanavicius.task1;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
+import lt.viko.eif.dsimanavicius.task1.SiuntaItem;
+
 import java.util.List;
 
 /**
@@ -14,16 +16,16 @@ import java.util.List;
 public class Siuntos {
 
     @XmlElement(name = "packageItem")
-    private List<SiuntaItem> packageItems;
+    private List<lt.viko.eif.dsimanavicius.task1.SiuntaItem> packageItems;
 
     public Siuntos() {
     }
 
-    public Siuntos(List<SiuntaItem> packageItems) {
+    public Siuntos(List<lt.viko.eif.dsimanavicius.task1.SiuntaItem> packageItems) {
         this.packageItems = packageItems;
     }
 
-    public List<SiuntaItem> getPackageItems() { return packageItems; }
+    public List<lt.viko.eif.dsimanavicius.task1.SiuntaItem> getPackageItems() { return packageItems; }
     public void setPackageItems(List<SiuntaItem> packageItems) { this.packageItems = packageItems; }
 
     @Override

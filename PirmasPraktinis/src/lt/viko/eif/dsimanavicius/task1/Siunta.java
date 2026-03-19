@@ -5,6 +5,8 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import lt.viko.eif.dsimanavicius.task1.SiuntaItem;
+
 import java.util.List;
 
 /**
@@ -40,7 +42,7 @@ public class Siunta {
     /** List of packages belonging to this shipment. */
     @XmlElementWrapper(name = "packages")
     @XmlElement(name = "packageItem")
-    private List<SiuntaItem> packageItems;
+    private List<lt.viko.eif.dsimanavicius.task1.SiuntaItem> packageItems;
 
     /**
      * Default constructor required by JAXB.
@@ -63,7 +65,7 @@ public class Siunta {
     public Siunta(int shipmentId, String sender, String origin,
                   String destination, float totalWeight,
                   boolean delivered, char priority,
-                  List<SiuntaItem> packageItems) {
+                  List<lt.viko.eif.dsimanavicius.task1.SiuntaItem> packageItems) {
         this.shipmentId   = shipmentId;
         this.sender       = sender;
         this.origin       = origin;
@@ -205,7 +207,7 @@ public class Siunta {
      *
      * @return list of packages
      */
-    public List<SiuntaItem> getPackageItems() {
+    public List<lt.viko.eif.dsimanavicius.task1.SiuntaItem> getPackageItems() {
         return packageItems;
     }
 

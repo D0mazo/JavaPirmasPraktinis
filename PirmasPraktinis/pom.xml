@@ -15,23 +15,24 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <build>
+        <testSourceDirectory>src/test</testSourceDirectory>
+    </build>
+
     <dependencies>
 
-        <!-- JAXB API -->
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
             <version>4.0.2</version>
         </dependency>
 
-        <!-- JAXB Runtime -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>4.0.5</version>
         </dependency>
 
-        <!-- JUnit 5 for tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
