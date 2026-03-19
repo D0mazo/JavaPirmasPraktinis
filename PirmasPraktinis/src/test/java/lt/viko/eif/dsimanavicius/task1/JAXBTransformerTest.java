@@ -15,7 +15,7 @@ class JAXBTransformerTest {
 
     /** Path to test XML file. */
     private static final String XML_PATH =
-            "src/lt/viko/eif/dsimanavicius/task1/siunta.xml";
+            "src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xml";
 
     /** Path to test output file. */
     private static final String OUTPUT_PATH =

@@ -21,7 +21,7 @@ public class JAXBTransformer {
 
     /** Path to the XSD schema file for validation. */
     private static final String XSD_PATH =
-            "src/lt/viko/eif/dsimanavicius/task1/siunta.xsd";
+            "src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xsd";
 
     /**
      * Transforms a Siunta POJO object to XML file and prints it to console.

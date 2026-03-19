@@ -14,7 +14,7 @@ public class Server {
     private static final int PORT = 5000;
 
     /** Path to the XML file. */
-    private static final String XML_FILE_PATH = "src/lt/viko/eif/dsimanavicius/task1/siunta.xml";
+    private static final String XML_FILE_PATH = "src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xml";
 
     /**
      * Starts the server and sends the XML file to one client.
