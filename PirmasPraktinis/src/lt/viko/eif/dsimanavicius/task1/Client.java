@@ -2,9 +2,13 @@ package lt.viko.eif.dsimanavicius.task1;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Simple client that receives siunta.xml from server and transforms it to POJO.
+ * Simple client that receives siunta.xml from server,
+ * transforms it to POJO and prints values to console.
+ * Also transforms POJO back to XML and prints to console.
  *
  * @author Dominykas
  */
@@ -21,13 +25,14 @@ public class Client {
             "src/lt/viko/eif/dsimanavicius/task1/received_siunta.xml";
 
     /**
-     * Connects to server, receives XML file and transforms it to POJO.
+     * Connects to server, receives XML, transforms to POJO,
+     * then transforms POJO back to XML and prints both to console.
      *
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) throws Exception {
 
-        // Step 1 - connect and receive XML file from server
+        // Step 1 - receive XML file from server
         Socket socket = new Socket(HOST, PORT);
         System.out.println("Connected to server!");
 
@@ -43,28 +48,31 @@ public class Client {
 
         fileOut.close();
         socket.close();
-        System.out.println("XML file received and saved.");
+        System.out.println("XML file received and saved.\n");
 
-        // Step 2 - transform received XML to POJO and print to console
-        System.out.println("\n=== Transforming XML to POJO ===");
         JAXBTransformer transformer = new JAXBTransformer();
+
+        // Step 2 - transform received XML to POJO and print values to console
+        System.out.println("=== Step 5: XML to POJO ===");
         Siunta siunta = transformer.transformToPOJO(SAVE_PATH);
 
-        // Step 3 - print all values to console
-        System.out.println("\n=== Shipment Details ===");
-        System.out.println("Shipment ID  : " + siunta.getShipmentId());
+        System.out.println("\nShipment ID  : " + siunta.getShipmentId());
         System.out.println("Sender       : " + siunta.getSender());
         System.out.println("Origin       : " + siunta.getOrigin());
         System.out.println("Destination  : " + siunta.getDestination());
         System.out.println("Total weight : " + siunta.getTotalWeight());
         System.out.println("Delivered    : " + siunta.isDelivered());
         System.out.println("Priority     : " + siunta.getPriority());
-
-        System.out.println("\n=== Package Items ===");
+        System.out.println("\nPackage items:");
         for (SiuntaItem item : siunta.getPackageItems()) {
-            System.out.println("  ID: "          + item.getId()
-                    + " | Description: " + item.getDescription()
-                    + " | Weight: "      + item.getWeight() + " kg");
+            System.out.println("  ID: " + item.getId()
+                    + " | " + item.getDescription()
+                    + " | " + item.getWeight() + " kg");
         }
+
+        // Step 3 - transform POJO back to XML and print to console
+        System.out.println("\n=== Step 6: POJO to XML ===\n");
+        transformer.transformToXML(siunta,
+                "src/lt/viko/eif/dsimanavicius/task1/test_output.xml");
     }
 }
