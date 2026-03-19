@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE siunta SYSTEM "siunta.dtd">
+ 
 <siunta>
+ 
     <!-- General shipment information -->
     <shipmentId>1001</shipmentId>
     <sender>BLS Logistics</sender>
@@ -10,67 +11,82 @@
     <totalWeight>152.7</totalWeight>
     <delivered>false</delivered>
     <priority>N</priority>
+ 
     <!-- List of dependent package items -->
     <packages>
+ 
         <packageItem>
             <id>1</id>
             <description>Elektronika</description>
             <weight>10.5</weight>
         </packageItem>
+ 
         <packageItem>
             <id>2</id>
             <description>Knygos</description>
             <weight>8.2</weight>
         </packageItem>
+ 
         <packageItem>
             <id>3</id>
-            <description>Drabužiai</description>
+            <description>Drabuziai</description>
             <weight>12.0</weight>
         </packageItem>
+ 
         <packageItem>
             <id>4</id>
             <description>Maisto produktai</description>
             <weight>15.0</weight>
         </packageItem>
+ 
         <packageItem>
             <id>5</id>
             <description>Baldai</description>
             <weight>25.3</weight>
         </packageItem>
+ 
         <packageItem>
             <id>6</id>
             <description>Kompiuteriai</description>
             <weight>18.4</weight>
         </packageItem>
+ 
         <packageItem>
             <id>7</id>
-            <description>Avalynė</description>
+            <description>Avalyne</description>
             <weight>6.5</weight>
         </packageItem>
+ 
         <packageItem>
             <id>8</id>
-            <description>Žaislai</description>
+            <description>Zaislai</description>
             <weight>7.1</weight>
         </packageItem>
+ 
         <packageItem>
             <id>9</id>
-            <description>Statybinės medžiagos</description>
+            <description>Statybines medzagos</description>
             <weight>14.0</weight>
         </packageItem>
+ 
         <packageItem>
             <id>10</id>
-            <description>Sporto įranga</description>
+            <description>Sporto iranga</description>
             <weight>9.5</weight>
         </packageItem>
+ 
         <packageItem>
             <id>11</id>
             <description>Medicinos reikmenys</description>
             <weight>11.2</weight>
         </packageItem>
+ 
         <packageItem>
             <id>12</id>
-            <description>Automobilių dalys</description>
+            <description>Automobiliu dalys</description>
             <weight>15.0</weight>
         </packageItem>
+ 
     </packages>
+ 
 </siunta>
