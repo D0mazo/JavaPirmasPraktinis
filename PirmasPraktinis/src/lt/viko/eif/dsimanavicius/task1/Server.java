@@ -1,7 +1,8 @@
 package lt.viko.eif.dsimanavicius.task1;
 
 import java.io.*;
-import java.net.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  * Simple server that sends siunta.xml to a client over network.
@@ -14,37 +15,46 @@ public class Server {
     private static final int PORT = 5000;
 
     /** Path to the XML file. */
-    private static final String XML_FILE_PATH = "src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xml";
+    private static final String XML_FILE_PATH =
+            "PirmasPraktinis/src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xml";
 
-    /**
-     * Starts the server and sends the XML file to one client.
-     *
-     * @param args command line arguments (not used)
-     * @throws IOException if server socket fails
-     */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
 
-        ServerSocket serverSocket = new ServerSocket(PORT);
-        System.out.println("Server started. Waiting for client...");
+            System.out.println("Server started. Waiting for client...");
 
-        Socket socket = serverSocket.accept();
-        System.out.println("Client connected!");
+            try (Socket socket = serverSocket.accept()) {
+                System.out.println("Client connected!");
 
-        FileInputStream fileIn = new FileInputStream(XML_FILE_PATH);
-        OutputStream out = socket.getOutputStream();
+                File file = new File(XML_FILE_PATH);
 
-        byte[] buffer = new byte[4096];
-        int bytesRead;
+                // 🔥 Debug + safety check
+                System.out.println("Looking for file at: " + file.getAbsolutePath());
 
-        while ((bytesRead = fileIn.read(buffer)) != -1) {
-            out.write(buffer, 0, bytesRead);
+                if (!file.exists()) {
+                    System.out.println("❌ File not found! Fix the path.");
+                    return;
+                }
+
+                try (
+                        FileInputStream fileIn = new FileInputStream(file);
+                        OutputStream out = socket.getOutputStream()
+                ) {
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+
+                    while ((bytesRead = fileIn.read(buffer)) != -1) {
+                        out.write(buffer, 0, bytesRead);
+                    }
+
+                    out.flush(); // 🔥 VERY IMPORTANT
+                }
+
+                System.out.println("File sent. Connection closed.");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        out.flush();
-        fileIn.close();
-        socket.close();
-        serverSocket.close();
-
-        System.out.println("File sent. Connection closed.");
     }
 }
