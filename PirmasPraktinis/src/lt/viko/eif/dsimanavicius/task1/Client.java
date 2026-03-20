@@ -29,11 +29,10 @@ public class Client {
         ) {
             System.out.println("Connected to server!");
 
-            // 📁 Prepare file
-            File file = new File(SAVE_PATH);
-            file.getParentFile().mkdirs(); // ensure /out exists
 
-            // 💾 Save incoming XML safely
+            File file = new File(SAVE_PATH);
+            file.getParentFile().mkdirs();
+
             try (FileOutputStream fileOut = new FileOutputStream(file)) {
                 byte[] buffer = new byte[4096];
                 int bytesRead;
@@ -44,7 +43,7 @@ public class Client {
                         if (bytesRead == -1) break;
                         fileOut.write(buffer, 0, bytesRead);
                     } catch (IOException e) {
-                        // 🔥 handles "Connection reset"
+
                         System.out.println("Connection closed by server.");
                         break;
                     }
@@ -55,7 +54,7 @@ public class Client {
 
             JAXBTransformer transformer = new JAXBTransformer();
 
-            // 🔄 XML → POJO
+
             System.out.println("XML to Plain Old Java Object");
             Siunta siunta = transformer.transformToPOJO(SAVE_PATH);
 
@@ -74,7 +73,6 @@ public class Client {
                         + " | " + item.getWeight() + " kg");
             }
 
-            // 🔄 POJO → XML
             System.out.println("\nfrom Plain Old Java Object to XML\n");
 
             File outputFile = new File(OUTPUT_PATH);

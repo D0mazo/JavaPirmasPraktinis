@@ -37,7 +37,7 @@ public class JAXBTransformer {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
         File outputFile = new File(filePath);
-        outputFile.getParentFile().mkdirs(); // 🔥 ensure folder exists
+        outputFile.getParentFile().mkdirs();
 
         marshaller.marshal(siunta, outputFile);
         marshaller.marshal(siunta, System.out);
@@ -51,19 +51,16 @@ public class JAXBTransformer {
     public Siunta transformToPOJO(String filePath) throws Exception {
 
         JAXBContext context = JAXBContext.newInstance(Siunta.class);
-
-        // 🔧 SAX parser setup
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         saxParserFactory.setNamespaceAware(true);
         saxParserFactory.setFeature(
                 "http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 
-        // 📁 Load XSD safely
         File schemaFile = new File(XSD_PATH);
         System.out.println("Looking for XSD at: " + schemaFile.getAbsolutePath());
 
         if (!schemaFile.exists()) {
-            throw new RuntimeException("❌ XSD file not found!");
+            throw new RuntimeException("XSD file not found!");
         }
 
         SchemaFactory schemaFactory =
@@ -72,7 +69,6 @@ public class JAXBTransformer {
         Schema schema = schemaFactory.newSchema(schemaFile);
         saxParserFactory.setSchema(schema);
 
-        // 🔄 Parse XML
         XMLReader xmlReader = saxParserFactory.newSAXParser().getXMLReader();
 
         File xmlFile = new File(filePath);

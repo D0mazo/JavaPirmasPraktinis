@@ -32,7 +32,7 @@ public class Server {
                 System.out.println("Looking for file at: " + file.getAbsolutePath());
 
                 if (!file.exists()) {
-                    System.out.println("❌ File not found! Fix the path.");
+                    System.out.println("File not found! Fix the path.");
                     return;
                 }
 
@@ -47,7 +47,7 @@ public class Server {
                         out.write(buffer, 0, bytesRead);
                     }
 
-                    out.flush(); // 🔥 VERY IMPORTANT
+                    out.flush();
                 }
 
                 System.out.println("File sent. Connection closed.");
