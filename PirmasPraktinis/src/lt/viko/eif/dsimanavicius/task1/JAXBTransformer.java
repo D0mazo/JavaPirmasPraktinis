@@ -25,7 +25,6 @@ public class JAXBTransformer {
     /** Path to the XSD schema file for validation. */
     private static final String XSD_PATH =
             "PirmasPraktinis/src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xsd";
-
     /**
      * Transforms a Siunta POJO object to XML file and prints it to console.
      */
@@ -51,12 +50,23 @@ public class JAXBTransformer {
     public Siunta transformToPOJO(String filePath) throws Exception {
 
         JAXBContext context = JAXBContext.newInstance(Siunta.class);
+
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         saxParserFactory.setNamespaceAware(true);
         saxParserFactory.setFeature(
                 "http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 
-        File schemaFile = new File(XSD_PATH);
+        // 🔥 Dynamic XSD path (WORKS EVERYWHERE)
+        File schemaFile = new File("src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xsd");
+
+        if (!schemaFile.exists()) {
+            schemaFile = new File("PirmasPraktinis/src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xsd");
+        }
+
+        if (!schemaFile.exists()) {
+            schemaFile = new File("../src/lt/viko/eif/dsimanavicius/task1/Files/siunta.xsd");
+        }
+
         System.out.println("Looking for XSD at: " + schemaFile.getAbsolutePath());
 
         if (!schemaFile.exists()) {
@@ -85,4 +95,6 @@ public class JAXBTransformer {
 
         return siunta;
     }
+
+
 }
